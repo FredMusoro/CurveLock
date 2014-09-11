@@ -1,4 +1,56 @@
 CurveLock
 =========
 
-Experimental File &amp; Message Encryption for Windows
+CurveLock is an experimental high-security message and file encryption application for Windows. To enhance security, the application was designed around the following key design points:
+
+* Desktop based, to reduce attack surface (unlike other options that are web/browser based)
+* Minimal exposed metadata
+* Non-NIST asymmetric encryption ([curve25519](https://en.wikipedia.org/wiki/Curve25519))
+* Crypto operations performed via [libsodium](https://github.com/jedisct1/libsodium)
+* Aggressive scrypt settings to resist bruteforcing passwords
+
+![](resources/screenshot.png)
+
+Want to support development? Consider donating via Bitcoin to `14jumFDmuVkLiAt4TgyKt17SWHtPRbkcLr` - all donations, no matter how small are appreciated.
+
+## Message Format
+
+The message is formatted as follows:
+
+    <version_byte> || <nonce, 24 bytes> || <sender's public key, 32 bytes> || BLAKE2B(nonce || recipient's public key) || <encrypted message>
+
+* Version: 1 byte, used to indicate the message format. Current version is `0x00`
+* Nonce: 24 bytes, randomly generated nonce used to encrypt message
+* Sender's Public Key: 32 bytes, required to decrypt message (ephemeral, see below)
+* Recipient Verifier: 16 bytes, recipient's public key hashed with the nonce using Blake2b
+* Encrypted Message: message length + 16 bytes; the curve25519/XSalsa20/Poly1305 ([crypto_box](http://nacl.cr.yp.to/box.html)) encrypted message
+
+**Anonymity:** To protect information about who sent a message, the sender uses an ephemeral key that is discarded after the message is sent. This prevents tracking who is sending messages, and prevents the sender from being able to later decrypt the message. To protect the recipient, especially in the case that the recipient has multiple public keys ("identities"), the recipient's public key is hashed with the nonce, producing a 16 byte hash. This allows the recipient to confirm that they are using the proper private key, without exposing information that could be used for tracking.
+
+The downside of this is that it isn't possible to authenticate who sent a message, if this type of authentication is required, another method of authentication should be used.
+
+## Identity
+
+A CurveLock Identity is derived from the user's password and email address using [scrypt](https://www.tarsnap.com/scrypt.html), the public ID is the user's public key encoded with [Base58Check](https://en.bitcoin.it/wiki/Base58Check_encoding). To generate the seed for the private key, the `scrypt` is used with the user's password, and the user's email as the salt (hashed with Blake2b); the `scrypt` parameters are:
+
+    OPS_LIMIT = 33554432
+    MEM_LIMIT = 1073741824
+
+These setting use 1GB of RAM, and takes roughly 10 seconds to complete. While this is likely excessive for most uses, this greatly complicates attempts to bruteforce the password. On some systems, this may cause failures due to insufficient memory available.
+
+The first byte if the ID is a version indicator; the current version is `0x0A`.
+
+Overall, the identity design was inspired by [miniLock](https://github.com/kaepora/miniLock/blob/master/README.md#2-key-derivation)), though is more aggressive to improve security.
+
+## Status
+
+The application is pre-alpha, it should only be used for testing - things may change, including breaking changes that would make it impossible to decrypt data.
+
+Notes:
+* File encryption is disabled. This is pending 
+
+## License
+
+This software is released under the MIT license.
+
+See LICENSE for more information.
