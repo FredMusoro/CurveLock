@@ -40,7 +40,7 @@
     <Reference Include="Base58Check">
       <HintPath>..\..\resources\Base58Check.dll</HintPath>
     </Reference>
-    <Reference Include="Sodium, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Sodium">
       <HintPath>..\packages\libsodium-net.0.5.0\lib\Net40\Sodium.dll</HintPath>
     </Reference>
     <Reference Include="System" />
