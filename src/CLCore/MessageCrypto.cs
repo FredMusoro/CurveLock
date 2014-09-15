@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CurveLock.Core
 {
@@ -33,7 +30,7 @@ namespace CurveLock.Core
       const int RECIP_VERIFIER_LENGTH = 16;
 
       var version = ArrayHelpers.SubArray(message, 0, VERSION_LENGTH)[0];
-      byte[] ret = null;
+      byte[] ret;
 
       switch (version)
       {
@@ -50,7 +47,6 @@ namespace CurveLock.Core
         default:
           //TODO: Unsupported version
           throw new NotImplementedException();
-          break;
       }
 
       return ret;

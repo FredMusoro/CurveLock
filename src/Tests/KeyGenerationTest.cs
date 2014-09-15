@@ -8,13 +8,13 @@ namespace Tests
   ///This is a test class for KeyGenerationTest and is intended
   ///to contain all KeyGenerationTest Unit Tests
   ///</summary>
-  [TestClass()]
+  [TestClass]
   public class KeyGenerationTest
   {
     /// <summary>
     ///A test for EncodePublicKey
     ///</summary>
-    [TestMethod()]
+    [TestMethod]
     public void EncodePublicKeyTest()
     {
       var publicKey = Utilities.HexToBinary("34f066fa6957e569848e7d6d1faaa129fe43e7bb6b4047e1db34d4e09a9f4e51");
@@ -28,7 +28,7 @@ namespace Tests
     /// <summary>
     ///A test for ScryptGenerateKey
     ///</summary>
-    [TestMethod()]
+    [TestMethod]
     public void ScryptGenerateKeyTest()
     {
       const string EMAIL = "bob@example.com";

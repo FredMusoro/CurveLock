@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace CurveLock.Panels
@@ -19,7 +13,7 @@ namespace CurveLock.Panels
       InitializeComponent();
     }
 
-    private void About_Load(object sender, EventArgs e)
+    private void AboutLoad(object sender, EventArgs e)
     {
       copyright.Text = AssemblyCopyright;
       version.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version;

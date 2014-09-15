@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
-using CurveLock.Panels;
+﻿using CurveLock.Panels;
 using CurveLock.Properties;
+using System;
+using System.Reflection;
+using System.Windows.Forms;
 using Menu = CurveLock.Panels.Menu;
 
 namespace CurveLock
@@ -22,7 +16,7 @@ namespace CurveLock
 
     private void MainLoad(object sender, EventArgs e)
     {
-      this.Text += " v" + Assembly.GetExecutingAssembly().GetName().Version;
+      Text += " v" + Assembly.GetExecutingAssembly().GetName().Version;
 
       //display the login panel
       var login = new Login();

@@ -1,7 +1,6 @@
 ﻿using System.Text;
 using CurveLock.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using Sodium;
 
 namespace Tests
@@ -10,13 +9,13 @@ namespace Tests
   ///This is a test class for MessageCryptoTest and is intended
   ///to contain all MessageCryptoTest Unit Tests
   ///</summary>
-  [TestClass()]
+  [TestClass]
   public class MessageCryptoTest
   {
     /// <summary>
     ///A test for DecryptMessage
     ///</summary>
-    [TestMethod()]
+    [TestMethod]
     public void DecryptMessageTest()
     {
       var message = Base58Check.Base58CheckEncoding.Decode("1AtPS411ipfcRmvBe1hoSvAbJpNfpvpzKrQHTuK8jw9WTGf69FM7kmkDxhf9nFpfG4dbEgrxYMuyyR3x4LM8LbscDx3x5mQWmGL8cDCShJKFBeEqN688QfhGNVVTsKqWNUJ");
@@ -30,7 +29,7 @@ namespace Tests
     /// <summary>
     ///A test for EncryptMessage
     ///</summary>
-    [TestMethod()]
+    [TestMethod]
     public void EncryptMessageTest()
     {
       var message = Encoding.UTF8.GetBytes("bob");

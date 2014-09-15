@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
+﻿using CurveLock.Core;
+using Sodium;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CurveLock.Core;
-using Sodium;
 
 namespace CurveLock.Panels
 {
@@ -23,11 +17,11 @@ namespace CurveLock.Panels
 
     private void LinkLoginLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-      this.Enabled = false;
+      Enabled = false;
 
       //get key seed, then continue once complete - takes 10+ seconds
       var task = Task<KeyPair>.Factory.StartNew(() => KeyGeneration.ScryptGenerateKey(email.Text, password.Text));
-      task.ContinueWith((key) => _CompleteProcessing(key.Result));
+      task.ContinueWith(key => _CompleteProcessing(key.Result));
     }
 
     private void _CompleteProcessing(KeyPair key)
@@ -36,7 +30,7 @@ namespace CurveLock.Panels
       Common.PublicKey = key.PublicKey;
       Common.Id = KeyGeneration.EncodePublicKey(key.PublicKey);
 
-      this.Invoke(Complete, this, EventArgs.Empty);
+      Invoke(Complete, this, EventArgs.Empty);
     }
   }
 }

@@ -98,7 +98,7 @@
       this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(132)))), ((int)(((byte)(174)))));
       this.Name = "About";
       this.Size = new System.Drawing.Size(594, 472);
-      this.Load += new System.EventHandler(this.About_Load);
+      this.Load += new System.EventHandler(this.AboutLoad);
       this.ResumeLayout(false);
       this.PerformLayout();
 
