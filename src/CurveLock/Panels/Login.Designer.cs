@@ -74,7 +74,7 @@
       this.password.Location = new System.Drawing.Point(82, 349);
       this.password.Name = "password";
       this.password.Size = new System.Drawing.Size(435, 33);
-      this.password.TabIndex = 12;
+      this.password.TabIndex = 1;
       this.password.UseSystemPasswordChar = true;
       // 
       // labelPassword1
@@ -91,7 +91,7 @@
       this.email.Location = new System.Drawing.Point(82, 253);
       this.email.Name = "email";
       this.email.Size = new System.Drawing.Size(435, 33);
-      this.email.TabIndex = 10;
+      this.email.TabIndex = 0;
       // 
       // labelEmail
       // 

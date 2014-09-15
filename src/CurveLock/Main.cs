@@ -54,6 +54,8 @@ namespace CurveLock
       menu.AboutClicked += MenuAboutClicked;
       menu.EncryptTextClicked += MenuEncryptTextClicked;
       menu.DecryptTextClicked += MenuDecryptTextClicked;
+      menu.EncryptFileClicked += MenuEncryptFileClicked;
+      menu.DecryptFileClicked += MenuDecryptFileClicked;
     }
 
     private void WelcomeComplete(object sender, EventArgs e)
@@ -72,6 +74,16 @@ namespace CurveLock
     }
 
     private void DecryptTextComplete(object sender, EventArgs e)
+    {
+      content.Controls.Remove((Control)sender);
+    }
+
+    private void EncryptFileComplete(object sender, EventArgs e)
+    {
+      content.Controls.Remove((Control)sender);
+    }
+
+    private void DecryptFileComplete(object sender, EventArgs e)
     {
       content.Controls.Remove((Control)sender);
     }
@@ -98,6 +110,22 @@ namespace CurveLock
       content.Controls.Add(decryptText);
       decryptText.Complete += DecryptTextComplete;
       decryptText.BringToFront();
+    }
+
+    private void MenuEncryptFileClicked(object sender, EventArgs e)
+    {
+      var encryptFile = new EncryptFile();
+      content.Controls.Add(encryptFile);
+      encryptFile.Complete += EncryptFileComplete;
+      encryptFile.BringToFront();
+    }
+
+    private void MenuDecryptFileClicked(object sender, EventArgs e)
+    {
+      var decryptFile = new DecryptFile();
+      content.Controls.Add(decryptFile);
+      decryptFile.Complete += DecryptFileComplete;
+      decryptFile.BringToFront();
     }
   }
 }

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CurveLock</RootNamespace>
     <AssemblyName>CurveLock</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -77,6 +77,18 @@
     <Compile Include="Panels\DecryptText.Designer.cs">
       <DependentUpon>DecryptText.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panels\DecryptFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\DecryptFile.Designer.cs">
+      <DependentUpon>DecryptFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\EncryptFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\EncryptFile.Designer.cs">
+      <DependentUpon>EncryptFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\EncryptText.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\DecryptText.resx">
       <DependentUpon>DecryptText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\DecryptFile.resx">
+      <DependentUpon>DecryptFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\EncryptFile.resx">
+      <DependentUpon>EncryptFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\EncryptText.resx">
       <DependentUpon>EncryptText.cs</DependentUpon>

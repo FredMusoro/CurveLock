@@ -8,6 +8,8 @@ namespace CurveLock.Panels
     public event EventHandler<EventArgs> AboutClicked;
     public event EventHandler<EventArgs> EncryptTextClicked;
     public event EventHandler<EventArgs> DecryptTextClicked;
+    public event EventHandler<EventArgs> EncryptFileClicked;
+    public event EventHandler<EventArgs> DecryptFileClicked;
 
     public Menu()
     {
@@ -32,6 +34,16 @@ namespace CurveLock.Panels
     private void DecryptTextLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
       DecryptTextClicked.Invoke(this, EventArgs.Empty);
+    }
+
+    private void EncryptFileLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      EncryptFileClicked.Invoke(this, EventArgs.Empty);
+    }
+
+    private void DecryptFileLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+      DecryptFileClicked.Invoke(this, EventArgs.Empty);
     }
   }
 }

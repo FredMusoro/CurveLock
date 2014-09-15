@@ -65,7 +65,6 @@
       // encryptFile
       // 
       this.encryptFile.AutoSize = true;
-      this.encryptFile.Enabled = false;
       this.encryptFile.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.encryptFile.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(94)))), ((int)(((byte)(145)))));
       this.encryptFile.Location = new System.Drawing.Point(221, 181);
@@ -75,6 +74,7 @@
       this.encryptFile.TabStop = true;
       this.encryptFile.Text = "Encrypt File";
       this.encryptFile.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(94)))), ((int)(((byte)(145)))));
+      this.encryptFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EncryptFileLinkClicked);
       // 
       // decryptText
       // 
@@ -93,7 +93,6 @@
       // decryptFile
       // 
       this.decryptFile.AutoSize = true;
-      this.decryptFile.Enabled = false;
       this.decryptFile.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.decryptFile.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(94)))), ((int)(((byte)(145)))));
       this.decryptFile.Location = new System.Drawing.Point(219, 255);
@@ -103,6 +102,7 @@
       this.decryptFile.TabStop = true;
       this.decryptFile.Text = "Decrypt File";
       this.decryptFile.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(94)))), ((int)(((byte)(145)))));
+      this.decryptFile.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.DecryptFileLinkClicked);
       // 
       // about
       // 

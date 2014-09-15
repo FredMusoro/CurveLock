@@ -18,10 +18,44 @@ namespace CurveLock.Panels
     {
       if (message.Text.Length > 0)
       {
+        byte[] decoded;
         decrypt.Enabled = false;
 
-        var decoded = Base58Check.Base58CheckEncoding.Decode(message.Text);
-        message.Text = Encoding.UTF8.GetString(MessageCrypto.DecryptMessage(decoded, Common.PrivateKey));
+        try
+        {
+          Enabled = false;
+
+          decoded = Base58Check.Base58CheckEncoding.Decode(message.Text);
+        }
+        catch (Exception)
+        {
+          MessageBox.Show("Unable to decode message. Please verify that it is correct.",
+            "CurveLock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+          //bail out, nothing we can do here
+          return;
+        }
+        finally
+        {
+          Enabled = true;
+        }
+
+        try
+        {
+          Enabled = false;
+
+          message.Text = Encoding.UTF8.GetString(MessageCrypto.DecryptMessage(decoded, Common.KeyPair.PrivateKey));
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show(
+            string.Format("Unable to decrypt message. Please verify that it is correct.\r\nError: '{0}'", ex.Message),
+            "CurveLock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+          Enabled = true;
+        }
       }
     }
 

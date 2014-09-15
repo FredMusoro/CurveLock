@@ -21,10 +21,27 @@ namespace CurveLock.Panels
 
     private void EncryptLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-      encrypt.Enabled = false;
+      if (message.Text.Length > 0)
+      {
+        encrypt.Enabled = false;
 
-      message.Text = Base58Check.Base58CheckEncoding.Encode(
-        MessageCrypto.EncryptMessage(Encoding.UTF8.GetBytes(message.Text), toId.Text));
+        try
+        {
+          Enabled = false;
+
+          message.Text = Base58Check.Base58CheckEncoding.Encode(
+            MessageCrypto.EncryptMessage(Encoding.UTF8.GetBytes(message.Text), toId.Text));
+        }
+        catch (Exception ex)
+        {
+          MessageBox.Show(string.Format("Unable to encrypt message.\r\nError: '{0}'", ex.Message),
+            "CurveLock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+          Enabled = true;
+        }
+      }
     }
   }
 }

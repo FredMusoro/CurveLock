@@ -20,17 +20,36 @@ namespace CurveLock.Panels
       Enabled = false;
 
       //get key seed, then continue once complete - takes 10+ seconds
-      var task = Task<KeyPair>.Factory.StartNew(() => KeyGeneration.ScryptGenerateKey(email.Text, password.Text));
+      var task = Task<KeyPair>.Factory.StartNew(_GenerateKeyPair);
       task.ContinueWith(key => _CompleteProcessing(key.Result));
     }
 
     private void _CompleteProcessing(KeyPair key)
     {
-      Common.PrivateKey = key.PrivateKey;
-      Common.PublicKey = key.PublicKey;
-      Common.Id = KeyGeneration.EncodePublicKey(key.PublicKey);
+      if (key != null)
+      {
+        Common.KeyPair = key;
+        Common.Id = KeyGeneration.EncodePublicKey(key.PublicKey);
 
-      Invoke(Complete, this, EventArgs.Empty);
+        Invoke(Complete, this, EventArgs.Empty);
+      }
+    }
+
+    private KeyPair _GenerateKeyPair()
+    {
+      KeyPair key = null;
+
+      try
+      {
+        key = KeyGeneration.ScryptGenerateKey(email.Text, password.Text);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(string.Format("Unable to generate CurveLock Identity\r\nError: '{0}'", ex.Message), 
+          "CurveLock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      return key;
     }
   }
 }

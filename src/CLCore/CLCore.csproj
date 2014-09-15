@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CurveLock.Core</RootNamespace>
     <AssemblyName>CLCore</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -37,8 +37,15 @@
     <Reference Include="Base58Check">
       <HintPath>..\..\resources\Base58Check.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net">
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="Sodium">
       <HintPath>..\packages\libsodium-net.0.5.0\lib\Net40\Sodium.dll</HintPath>
+    </Reference>
+    <Reference Include="StreamCryptor, Version=0.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\StreamCryptor.0.1.16\lib\net40\StreamCryptor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

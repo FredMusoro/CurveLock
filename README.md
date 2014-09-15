@@ -13,7 +13,7 @@ CurveLock is an experimental high-security message and file encryption applicati
 
 Want to support development? Consider donating via Bitcoin to `14jumFDmuVkLiAt4TgyKt17SWHtPRbkcLr` - all donations, no matter how small are appreciated.
 
-## Message Format
+## Text Message Format
 
 The message is formatted as follows:
 
@@ -28,6 +28,12 @@ The message is formatted as follows:
 **Anonymity:** To protect information about who sent a message, the sender uses an ephemeral key that is discarded after the message is sent. This prevents tracking who is sending messages, and prevents the sender from being able to later decrypt the message. To protect the recipient, especially in the case that the recipient has multiple public keys ("identities"), the recipient's public key is hashed with the nonce, producing a 16 byte hash. This allows the recipient to confirm that they are using the proper private key, without exposing information that could be used for tracking.
 
 The downside of this is that it isn't possible to authenticate who sent a message, if this type of authentication is required, another method of authentication should be used.
+
+## File Format
+
+Files are encrypted via [StreamCryptor](https://github.com/bitbeans/StreamCryptor), into `SCCEF` format. The same anonymity measures that exist for Text Message are employed here as well; so files are encrypted with an ephemeral key pair. As with Text Messages, StreamCryptor uses `libsodium` for all cryptographic operations, and is Text Messages.
+
+StreamCryptor is a small library that site on top of `libsodium-net` (and thus `libsodium`) to perform chunked file encryption.
 
 ## Identity
 
@@ -45,9 +51,6 @@ Overall, the identity design was inspired by [miniLock](https://github.com/kaepo
 ## Status
 
 The application is pre-alpha, it should only be used for testing - things may change, including breaking changes that would make it impossible to decrypt data.
-
-Notes:
-* File encryption is disabled. This is pending 
 
 ## License
 
