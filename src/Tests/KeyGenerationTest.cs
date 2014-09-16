@@ -34,10 +34,9 @@ namespace Tests
       const string EMAIL = "bob@example.com";
       const string PASSWORD = "bobIsGreat&1337!&sTuFf";
       var expected = new KeyPair(
-        Utilities.HexToBinary("34f066fa6957e569848e7d6d1faaa129fe43e7bb6b4047e1db34d4e09a9f4e51"), 
-        Utilities.HexToBinary("4ba8e0b41fc07b5a1d4e0be0a4b464f6f2673a3854f967b5c31102b15683a195"));
+        Utilities.HexToBinary("db5d2066285100fb2dc96a6af544cb1ec611c2fa178d5434382163a427572a7d"),
+        Utilities.HexToBinary("7c18a20b3fc73f110fd91d35771294c61994187d805ee2eb6dd2071ae09b4db9"));
 
-      //this may fail due to needing to allocate 1GB of RAM
       var actual = KeyGeneration.ScryptGenerateKey(EMAIL, PASSWORD);
       CollectionAssert.AreEqual(expected.PrivateKey, actual.PrivateKey);
     }
