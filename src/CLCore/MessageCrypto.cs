@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Sodium;
+using StreamCryptor;
 
 namespace CurveLock.Core
 {
@@ -62,7 +63,7 @@ namespace CurveLock.Core
       //TODO: Check to make sure that the ID version is 0x0A
       var recip = ArrayHelpers.SubArray(Base58Check.Base58CheckEncoding.Decode(toId), 1);
 
-      var ret = StreamCryptor.StreamCryptor.EncryptFileWithStream(key, recip, path, null, ".CurveLock");
+      var ret = Cryptor.EncryptFileWithStream(key, recip, path, null, ".CurveLock");
 
       return ret;
     }
@@ -70,7 +71,7 @@ namespace CurveLock.Core
     public static string DecryptFile(string file, KeyPair key)
     {
       var path = Path.GetDirectoryName(file);
-      var ret = StreamCryptor.StreamCryptor.DecryptFileWithStream(key, file, path);
+      var ret = Cryptor.DecryptFileWithStream(key, file, path);
 
       return ret;
     }
