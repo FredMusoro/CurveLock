@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using CurveLock.Core;
+﻿using CurveLock.Core;
 using System;
-using System.Text;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace CurveLock.Panels

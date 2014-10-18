@@ -42,11 +42,11 @@
     </Reference>
     <Reference Include="Sodium, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\libsodium-net.0.6.0-beta3\lib\Net40\Sodium.dll</HintPath>
+      <HintPath>..\packages\libsodium-net.0.6.0\lib\Net40\Sodium.dll</HintPath>
     </Reference>
-    <Reference Include="StreamCryptor, Version=0.2.5.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="StreamCryptor, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\StreamCryptor.0.2.5-beta\lib\net45\StreamCryptor.dll</HintPath>
+      <HintPath>..\packages\StreamCryptor.0.3.0\lib\net45\StreamCryptor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
