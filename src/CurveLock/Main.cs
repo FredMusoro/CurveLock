@@ -18,7 +18,7 @@ namespace CurveLock
 
     private void MainLoad(object sender, EventArgs e)
     {
-      Text += " v" + Assembly.GetExecutingAssembly().GetName().Version;
+      Text += " v" + Assembly.GetExecutingAssembly().GetName().Version.ToString(2);
 
       //display the login panel
       var login = new Login();
