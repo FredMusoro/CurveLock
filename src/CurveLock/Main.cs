@@ -9,6 +9,8 @@ namespace CurveLock
 {
   public partial class Main : Form
   {
+    private Menu _menu;
+
     public Main()
     {
       InitializeComponent();
@@ -49,13 +51,13 @@ namespace CurveLock
       content.Controls.Remove((Control)sender);
 
       //add the menu control
-      var menu = new Menu();
-      content.Controls.Add(menu);
-      menu.AboutClicked += MenuAboutClicked;
-      menu.EncryptTextClicked += MenuEncryptTextClicked;
-      menu.DecryptTextClicked += MenuDecryptTextClicked;
-      menu.EncryptFileClicked += MenuEncryptFileClicked;
-      menu.DecryptFileClicked += MenuDecryptFileClicked;
+      _menu = new Menu();
+      content.Controls.Add(_menu);
+      _menu.AboutClicked += MenuAboutClicked;
+      _menu.EncryptTextClicked += MenuEncryptTextClicked;
+      _menu.DecryptTextClicked += MenuDecryptTextClicked;
+      _menu.EncryptFileClicked += MenuEncryptFileClicked;
+      _menu.DecryptFileClicked += MenuDecryptFileClicked;
     }
 
     private void WelcomeComplete(object sender, EventArgs e)
@@ -63,69 +65,48 @@ namespace CurveLock
       content.Controls.Remove((Control)sender);
     }
 
-    private void AboutComplete(object sender, EventArgs e)
-    {
-      content.Controls.Remove((Control)sender);
-    }
-
-    private void EncryptTextComplete(object sender, EventArgs e)
-    {
-      content.Controls.Remove((Control)sender);
-    }
-
-    private void DecryptTextComplete(object sender, EventArgs e)
-    {
-      content.Controls.Remove((Control)sender);
-    }
-
-    private void EncryptFileComplete(object sender, EventArgs e)
-    {
-      content.Controls.Remove((Control)sender);
-    }
-
-    private void DecryptFileComplete(object sender, EventArgs e)
-    {
-      content.Controls.Remove((Control)sender);
-    }
-
     private void MenuAboutClicked(object sender, EventArgs e)
     {
       var about = new About();
-      content.Controls.Add(about);
-      about.Complete += AboutComplete;
-      about.BringToFront();
+      AddPanel(about);
     }
 
     private void MenuEncryptTextClicked(object sender, EventArgs e)
     {
       var encryptText = new EncryptText();
-      content.Controls.Add(encryptText);
-      encryptText.Complete += EncryptTextComplete;
-      encryptText.BringToFront();
+      AddPanel(encryptText);
     }
 
     private void MenuDecryptTextClicked(object sender, EventArgs e)
     {
       var decryptText = new DecryptText();
-      content.Controls.Add(decryptText);
-      decryptText.Complete += DecryptTextComplete;
-      decryptText.BringToFront();
+      AddPanel(decryptText);
     }
 
     private void MenuEncryptFileClicked(object sender, EventArgs e)
     {
       var encryptFile = new EncryptFile();
-      content.Controls.Add(encryptFile);
-      encryptFile.Complete += EncryptFileComplete;
-      encryptFile.BringToFront();
+      AddPanel(encryptFile);
     }
 
     private void MenuDecryptFileClicked(object sender, EventArgs e)
     {
       var decryptFile = new DecryptFile();
-      content.Controls.Add(decryptFile);
-      decryptFile.Complete += DecryptFileComplete;
-      decryptFile.BringToFront();
+      AddPanel(decryptFile);
+    }
+
+    private void AddPanel(UserControl pnl)
+    {
+      content.Controls.Add(pnl);
+      ((ICompletePanel)pnl).Complete += PanelComplete;
+      pnl.BringToFront();
+      _menu.Enabled = false;
+    }
+
+    private void PanelComplete(object sender, EventArgs e)
+    {
+      content.Controls.Remove((Control)sender);
+      _menu.Enabled = true;
     }
   }
 }

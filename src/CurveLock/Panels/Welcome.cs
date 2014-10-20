@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace CurveLock.Panels
 {
-  public partial class Welcome : UserControl
+  public partial class Welcome : UserControl, ICompletePanel
   {
     public event EventHandler<EventArgs> Complete;
 

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace CurveLock.Panels
 {
-  public partial class EncryptText : UserControl
+  public partial class EncryptText : UserControl, ICompletePanel
   {
     public event EventHandler<EventArgs> Complete;
 

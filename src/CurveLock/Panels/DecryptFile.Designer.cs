@@ -33,7 +33,7 @@
       this.label2 = new System.Windows.Forms.Label();
       this.cancel = new System.Windows.Forms.LinkLabel();
       this.data = new System.Windows.Forms.Panel();
-      this.filesAdded = new System.Windows.Forms.Label();
+      this.status = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.data.SuspendLayout();
       this.SuspendLayout();
@@ -88,7 +88,7 @@
       this.data.AllowDrop = true;
       this.data.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(94)))), ((int)(((byte)(145)))));
       this.data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.data.Controls.Add(this.filesAdded);
+      this.data.Controls.Add(this.status);
       this.data.Controls.Add(this.label3);
       this.data.Location = new System.Drawing.Point(17, 112);
       this.data.Name = "data";
@@ -97,18 +97,18 @@
       this.data.DragDrop += new System.Windows.Forms.DragEventHandler(this.DataDragDrop);
       this.data.DragEnter += new System.Windows.Forms.DragEventHandler(this.DataDragEnter);
       // 
-      // filesAdded
+      // status
       // 
-      this.filesAdded.AutoSize = true;
-      this.filesAdded.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Italic);
-      this.filesAdded.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(16)))), ((int)(((byte)(58)))));
-      this.filesAdded.Location = new System.Drawing.Point(221, 206);
-      this.filesAdded.Name = "filesAdded";
-      this.filesAdded.Size = new System.Drawing.Size(119, 25);
-      this.filesAdded.TabIndex = 10;
-      this.filesAdded.Text = "0 Files Added";
-      this.filesAdded.UseMnemonic = false;
-      this.filesAdded.Visible = false;
+      this.status.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Italic);
+      this.status.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(16)))), ((int)(((byte)(58)))));
+      this.status.Location = new System.Drawing.Point(3, 282);
+      this.status.Name = "status";
+      this.status.Size = new System.Drawing.Size(554, 25);
+      this.status.TabIndex = 10;
+      this.status.Text = "0 Files Added";
+      this.status.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+      this.status.UseMnemonic = false;
+      this.status.Visible = false;
       // 
       // label3
       // 
@@ -150,6 +150,6 @@
     private System.Windows.Forms.LinkLabel cancel;
     private System.Windows.Forms.Panel data;
     private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.Label filesAdded;
+    private System.Windows.Forms.Label status;
   }
 }

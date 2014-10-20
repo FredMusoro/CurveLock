@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Sodium;
 using StreamCryptor;
+using StreamCryptor.Model;
 
 namespace CurveLock.Core
 {
@@ -55,7 +57,7 @@ namespace CurveLock.Core
       return ret;
     }
 
-    public static string EncryptFile(string path, string toId)
+    public static async Task EncryptFile(string path, string toId, IProgress<StreamCryptorTaskAsyncProgress> prg)
     {
       //generate an ephemeral key to encrypt this with
       var key = PublicKeyBox.GenerateKeyPair();
@@ -63,17 +65,13 @@ namespace CurveLock.Core
       //TODO: Check to make sure that the ID version is 0x0A
       var recip = ArrayHelpers.SubArray(Base58Check.Base58CheckEncoding.Decode(toId), 1);
 
-      var ret = Cryptor.EncryptFileWithStream(key, recip, path, null, ".CurveLock");
-
-      return ret;
+      await Cryptor.EncryptFileWithStreamAsync(key, recip, path, fileExtension: ".CurveLock", encryptionProgress: prg);
     }
 
-    public static string DecryptFile(string file, KeyPair key)
+    public static async Task DecryptFile(string file, KeyPair key, IProgress<StreamCryptorTaskAsyncProgress> prg)
     {
       var path = Path.GetDirectoryName(file);
-      var ret = Cryptor.DecryptFileWithStream(key, file, path);
-
-      return ret;
+      await Cryptor.DecryptFileWithStreamAsync(key, file, path, prg);
     }
   }
 }

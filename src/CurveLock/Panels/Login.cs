@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CurveLock.Panels
 {
-  public partial class Login : UserControl
+  public partial class Login : UserControl, ICompletePanel
   {
     public event EventHandler<EventArgs> Complete;
 

@@ -43,9 +43,17 @@
     <Reference Include="Base58Check">
       <HintPath>..\..\resources\Base58Check.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    </Reference>
     <Reference Include="Sodium, Version=0.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\libsodium-net.0.6.0\lib\Net40\Sodium.dll</HintPath>
+    </Reference>
+    <Reference Include="StreamCryptor, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\StreamCryptor.0.3.0\lib\net45\StreamCryptor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="ICompletePanel.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

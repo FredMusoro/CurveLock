@@ -1,11 +1,13 @@
-﻿using CurveLock.Core;
+﻿using System.Threading.Tasks;
+using CurveLock.Core;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using StreamCryptor.Model;
 
 namespace CurveLock.Panels
 {
-  public partial class EncryptFile : UserControl
+  public partial class EncryptFile : UserControl, ICompletePanel
   {
     private List<string> _files = new List<string>();
  
@@ -21,31 +23,16 @@ namespace CurveLock.Panels
       Complete.Invoke(this, EventArgs.Empty);
     }
 
-    private void EncryptLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    private async void EncryptLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
       if (_files.Count > 0)
       {
         encrypt.Enabled = false;
 
-        foreach (var file in _files)
-        {
-          try
-          {
-            Enabled = false;
+        await ProcessFiles();
 
-            //todo: thread this off
-            MessageCrypto.EncryptFile(file, toId.Text);
-          }
-          catch (Exception ex)
-          {
-            MessageBox.Show(string.Format("Unable to encrypt message.\r\nError: '{0}'", ex.Message),
-              "CurveLock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          }
-          finally
-          {
-            Enabled = true;
-          }
-        }
+        status.Text = "Complete!";
+        Enabled = true;
       }
     }
 
@@ -66,9 +53,43 @@ namespace CurveLock.Panels
         {
           _files.Add(file);
 
-          filesAdded.Visible = true;
-          filesAdded.Text = string.Format("{0} File(s) Added", _files.Count);
+          status.Visible = true;
+          status.Text = string.Format("{0} File(s) Added", _files.Count);
         }
+      }
+    }
+
+    private async Task ProcessFiles()
+    {
+      foreach (var file in _files)
+      {
+        await ProcessFile(file);
+      }
+    }
+
+    private async Task ProcessFile(string file)
+    {
+      var shortFile = System.IO.Path.GetFileName(file);
+
+      if (!string.IsNullOrEmpty(shortFile) && shortFile.Length > 35)
+        shortFile = shortFile.Substring(0, 32) + "...";
+
+      var prg = new Progress<StreamCryptorTaskAsyncProgress>();
+      prg.ProgressChanged += (s, e) =>
+      {
+        status.Text = string.Format("{0}: {1}%", shortFile, e.ProgressPercentage);
+      };
+
+      try
+      {
+        Enabled = false;
+
+        await MessageCrypto.EncryptFile(file, toId.Text, prg);
+      }
+      catch (Exception ex)
+      {
+        MessageBox.Show(string.Format("Unable to encrypt message.\r\nError: '{0}'", ex.Message),
+          "CurveLock Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
     }
   }
