@@ -33,7 +33,7 @@ The downside of this is that it isn't possible to authenticate who sent a messag
 
 Files are encrypted via [StreamCryptor](https://github.com/bitbeans/StreamCryptor), into `SCCEF` format. The same anonymity measures that exist for Text Message are employed here as well; so files are encrypted with an ephemeral key pair. As with Text Messages, StreamCryptor uses `libsodium` for all cryptographic operations.
 
-StreamCryptor is a small library that site on top of `libsodium-net` (and thus `libsodium`) to perform chunked file encryption.
+StreamCryptor is a small library that sits on top of `libsodium-net` (and thus `libsodium`) to perform chunked file encryption.
 
 ## Identity
 
@@ -42,7 +42,7 @@ A CurveLock Identity is derived from the user's password and email address using
     OPS_LIMIT = 8388608
     MEM_LIMIT = 100000000
 
-These setting use 100MB of RAM, and takes roughly 5 seconds to complete. While this is likely excessive for most uses, this greatly complicates attempts to bruteforce the password. On some systems, this may cause failures due to insufficient memory available.
+These setting use 100MB of RAM, and takes roughly 5 seconds to complete. While this is likely excessive for most users, this greatly complicates attempts to bruteforce the password. On some systems, this may cause failures due to insufficient memory available.
 
 The first byte if the ID is a version indicator; the current version is `0x0A`.
 
