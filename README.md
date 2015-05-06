@@ -31,7 +31,7 @@ The downside of this is that it isn't possible to authenticate who sent a messag
 
 ## File Format
 
-Files are encrypted via [StreamCryptor](https://github.com/bitbeans/StreamCryptor), into `SCCEF` format. The same anonymity measures that exist for Text Message are employed here as well; so files are encrypted with an ephemeral key pair. As with Text Messages, StreamCryptor uses `libsodium` for all cryptographic operations, and is Text Messages.
+Files are encrypted via [StreamCryptor](https://github.com/bitbeans/StreamCryptor), into `SCCEF` format. The same anonymity measures that exist for Text Message are employed here as well; so files are encrypted with an ephemeral key pair. As with Text Messages, StreamCryptor uses `libsodium` for all cryptographic operations.
 
 StreamCryptor is a small library that site on top of `libsodium-net` (and thus `libsodium`) to perform chunked file encryption.
 
