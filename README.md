@@ -42,7 +42,7 @@ A CurveLock Identity is derived from the user's password and email address using
     OPS_LIMIT = 8388608
     MEM_LIMIT = 100000000
 
-These setting use 100MB of RAM, and takes roughly 5 seconds to complete. While this is likely excessive for most users, this greatly complicates attempts to bruteforce the password. On some systems, this may cause failures due to insufficient memory available.
+These setting use 100MB of RAM, and takes roughly 5 seconds to complete. While this is likely excessive for most users, this greatly complicates attempts to bruteforce the password.
 
 The first byte if the ID is a version indicator; the current version is `0x0A`.
 
