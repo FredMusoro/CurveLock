@@ -78,10 +78,17 @@ namespace CurveLock.Core
       //generate an ephemeral key to encrypt this with
       var key = PublicKeyBox.GenerateKeyPair();
 
-      //TODO: Check to make sure that the ID version is 0x0A
-      var recip = ArrayHelpers.SubArray(Base58Check.Base58CheckEncoding.Decode(toId), 1);
+      //decode the recip ID
+      var recip = Base58Check.Base58CheckEncoding.Decode(toId);
 
-      await Cryptor.EncryptFileWithStreamAsync(key, recip, path, fileExtension: ".CurveLock", encryptionProgress: prg);
+      //Check to make sure that the ID version is supported
+      if (recip[0] != ID_VERSION)
+      {
+        throw new CryptographicException("Invalid ID Format.");
+      }
+
+      await Cryptor.EncryptFileWithStreamAsync(key, ArrayHelpers.SubArray(recip, 1), path, 
+        fileExtension: ".CurveLock", encryptionProgress: prg);
     }
 
     public static async Task DecryptFile(string file, KeyPair key, IProgress<StreamCryptorTaskAsyncProgress> prg)
