@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
       this.header = new System.Windows.Forms.Label();
       this.linkLogin = new System.Windows.Forms.LinkLabel();
@@ -36,6 +37,8 @@
       this.labelPassword1 = new System.Windows.Forms.Label();
       this.email = new System.Windows.Forms.TextBox();
       this.labelEmail = new System.Windows.Forms.Label();
+      this.labelPasswordStrength = new System.Windows.Forms.Label();
+      this.toolTip = new System.Windows.Forms.ToolTip(this.components);
       this.SuspendLayout();
       // 
       // header
@@ -76,6 +79,7 @@
       this.password.Size = new System.Drawing.Size(435, 33);
       this.password.TabIndex = 1;
       this.password.UseSystemPasswordChar = true;
+      this.password.TextChanged += new System.EventHandler(this.PasswordTextChanged);
       // 
       // labelPassword1
       // 
@@ -102,10 +106,21 @@
       this.labelEmail.TabIndex = 9;
       this.labelEmail.Text = "Email Address:";
       // 
+      // labelPasswordStrength
+      // 
+      this.labelPasswordStrength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+      this.labelPasswordStrength.Location = new System.Drawing.Point(392, 311);
+      this.labelPasswordStrength.Name = "labelPasswordStrength";
+      this.labelPasswordStrength.Size = new System.Drawing.Size(125, 25);
+      this.labelPasswordStrength.TabIndex = 12;
+      this.labelPasswordStrength.Text = "Score: 0/10";
+      this.labelPasswordStrength.TextAlign = System.Drawing.ContentAlignment.TopRight;
+      // 
       // Login
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(16)))), ((int)(((byte)(58)))));
+      this.Controls.Add(this.labelPasswordStrength);
       this.Controls.Add(this.password);
       this.Controls.Add(this.labelPassword1);
       this.Controls.Add(this.email);
@@ -131,5 +146,7 @@
     private System.Windows.Forms.Label labelPassword1;
     private System.Windows.Forms.TextBox email;
     private System.Windows.Forms.Label labelEmail;
+    private System.Windows.Forms.Label labelPasswordStrength;
+    private System.Windows.Forms.ToolTip toolTip;
   }
 }

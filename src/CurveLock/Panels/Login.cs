@@ -24,6 +24,15 @@ namespace CurveLock.Panels
       task.ContinueWith(key => _CompleteProcessing(key.Result));
     }
 
+    private void PasswordTextChanged(object sender, EventArgs e)
+    {
+      var entropy = Zxcvbn.Zxcvbn.MatchPassword(password.Text).Entropy;
+      var score = Core.Utilities.Clamp(Convert.ToInt32((entropy / 128) * 10), 0, 10);
+
+      labelPasswordStrength.Text = string.Format("Score: {0}/10", score);
+      toolTip.SetToolTip(labelPasswordStrength, String.Format("Entropy: {0}", entropy));
+    }
+
     private void _CompleteProcessing(KeyPair key)
     {
       if (key != null)

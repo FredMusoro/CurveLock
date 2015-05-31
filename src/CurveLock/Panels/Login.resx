@@ -120,4 +120,7 @@
   <data name="intro.Text" xml:space="preserve">
     <value>Enter your email and password. These will be used to generate your CurveLock Identity. It's important that you chose a very strong password, as anyone that is able to guess your password can decrypt your data.</value>
   </data>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
