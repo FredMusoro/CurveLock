@@ -44,7 +44,7 @@ namespace CurveLock.Panels
         {
           Enabled = false;
 
-          message.Text = Encoding.UTF8.GetString(MessageCrypto.DecryptMessage(decoded, Common.KeyPair.PrivateKey));
+          message.Text = Encoding.UTF8.GetString(MessageCrypto.DecryptMessage(decoded, Common.KeyPair));
         }
         catch (Exception ex)
         {

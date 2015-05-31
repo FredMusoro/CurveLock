@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Sodium;
 using StreamCryptor;
@@ -9,25 +10,33 @@ namespace CurveLock.Core
 {
   public static class MessageCrypto
   {
+    private const int ID_VERSION = 0x0A;
+
     public static byte[] EncryptMessage(byte[] message, string toId)
     {
       //generate an ephemeral key to encrypt this with
       var key = PublicKeyBox.GenerateKeyPair();
 
-      //TODO: Check to make sure that the ID version is 0x0A
-      var recip = ArrayHelpers.SubArray(Base58Check.Base58CheckEncoding.Decode(toId), 1);
+      //decode the recip ID
+      var recip = Base58Check.Base58CheckEncoding.Decode(toId);
+
+      //Check to make sure that the ID version is supported
+      if (recip[0] != ID_VERSION)
+      {
+        throw new CryptographicException("Invalid ID Format.");
+      }
 
       var nonce = SodiumCore.GetRandomBytes(24);
-      var encrypted = PublicKeyBox.Create(message, nonce, key.PrivateKey, recip);
+      var encrypted = PublicKeyBox.Create(message, nonce, key.PrivateKey, ArrayHelpers.SubArray(recip, 1));
       var recipVerifier = GenericHash.Hash(ArrayHelpers.ConcatArrays(nonce, key.PublicKey), null, 16);
-      var version = new byte[] { 0x00 };
+      var version = new byte[] {0x00};
 
       var final = ArrayHelpers.ConcatArrays(version, nonce, key.PublicKey, recipVerifier, encrypted);
 
       return final;
     }
 
-    public static byte[] DecryptMessage(byte[] message, byte[] privateKey)
+    public static byte[] DecryptMessage(byte[] message, KeyPair key)
     {
       const int VERSION_LENGTH = 1;
       const int NONCE_LENGTH = 24;
@@ -45,7 +54,14 @@ namespace CurveLock.Core
           var verifier = ArrayHelpers.SubArray(message, 57, RECIP_VERIFIER_LENGTH);
           var encrypted = ArrayHelpers.SubArray(message, 73);
 
-          var decrypted = PublicKeyBox.Open(encrypted, nonce, privateKey, senderKey);
+          //check the verifier, to make sure that the message is for this KeyPair before going on
+          var recipVarifier = GenericHash.Hash(ArrayHelpers.ConcatArrays(nonce, key.PublicKey), null, 16);
+          if (Utilities.ByteArrayCompare(verifier, recipVarifier))
+          {
+            throw new CryptographicException("Invalid verifier; message not encrypted for this key.");
+          }
+
+          var decrypted = PublicKeyBox.Open(encrypted, nonce, key.PrivateKey, senderKey);
           ret = decrypted;
 
           break;
