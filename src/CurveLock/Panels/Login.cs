@@ -17,11 +17,19 @@ namespace CurveLock.Panels
 
     private void LinkLoginLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-      Enabled = false;
+      if (!string.IsNullOrWhiteSpace(email.Text) && !string.IsNullOrWhiteSpace(password.Text))
+      {
+        Enabled = false;
 
-      //get key seed, then continue once complete - takes 10+ seconds
-      var task = Task<KeyPair>.Factory.StartNew(_GenerateKeyPair);
-      task.ContinueWith(key => _CompleteProcessing(key.Result));
+        //get key seed, then continue once complete - takes 10+ seconds
+        var task = Task<KeyPair>.Factory.StartNew(_GenerateKeyPair);
+        task.ContinueWith(key => _CompleteProcessing(key.Result));
+      }
+      else
+      {
+        MessageBox.Show("Email Address and Password are required to continue.",
+          "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      }
     }
 
     private void PasswordTextChanged(object sender, EventArgs e)
