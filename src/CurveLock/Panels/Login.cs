@@ -41,6 +41,15 @@ namespace CurveLock.Panels
       toolTip.SetToolTip(labelPasswordStrength, String.Format("Entropy: {0}", entropy));
     }
 
+    private void PasswordKeyDown(object sender, KeyEventArgs e)
+    {
+      if (e.KeyCode == Keys.Enter)
+      {
+        e.Handled = true;
+        LinkLoginLinkClicked(this, null);
+      }
+    }
+
     private void _CompleteProcessing(KeyPair key)
     {
       if (key != null)

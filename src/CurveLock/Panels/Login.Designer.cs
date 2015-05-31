@@ -80,6 +80,7 @@
       this.password.TabIndex = 1;
       this.password.UseSystemPasswordChar = true;
       this.password.TextChanged += new System.EventHandler(this.PasswordTextChanged);
+      this.password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PasswordKeyDown);
       // 
       // labelPassword1
       // 
