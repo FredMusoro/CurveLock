@@ -26,7 +26,7 @@ OutputDir=_signing
 OutputBaseFilename=setup-curvelock-{#MyAppVersion}
 Compression=lzma
 SolidCompression=yes
-UninstallDisplayIcon={app}\{MyAppExeName}
+UninstallDisplayIcon={app}\{#MyAppExeName}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -37,6 +37,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "_signing\bin\CurveLock.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "_signing\bin\Base58Check.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "_signing\bin\Zxcvbn.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "_signing\bin\CLCore.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "_signing\bin\libsodium.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "_signing\bin\libsodium-64.dll"; DestDir: "{app}"; Flags: ignoreversion
