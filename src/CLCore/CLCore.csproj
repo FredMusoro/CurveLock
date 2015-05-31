@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Base58Check">
-      <HintPath>..\..\resources\Base58Check.dll</HintPath>
+      <HintPath>..\Dependencies\Base58Check.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
