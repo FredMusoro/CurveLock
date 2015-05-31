@@ -42,7 +42,7 @@ namespace CurveLock
     private void MainFormClosing(object sender, FormClosingEventArgs e)
     {
       //save the application settings
-      //Settings.Default.Save();
+      Settings.Default.Save();
     }
 
     private void LoginComplete(object sender, EventArgs e)
