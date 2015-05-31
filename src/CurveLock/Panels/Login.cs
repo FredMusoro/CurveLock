@@ -17,18 +17,23 @@ namespace CurveLock.Panels
 
     private void LinkLoginLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-      if (!string.IsNullOrWhiteSpace(email.Text) && !string.IsNullOrWhiteSpace(password.Text))
+      if (string.IsNullOrWhiteSpace(email.Text) || string.IsNullOrWhiteSpace(password.Text))
+      {
+        MessageBox.Show("Email Address and Password are required to continue.",
+          "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      }
+      else if (!email.Text.Contains(".") || !email.Text.Contains("@"))
+      {
+        MessageBox.Show("Email Address must contain at least one period and at symbol.",
+          "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+      }
+      else
       {
         Enabled = false;
 
         //get key seed, then continue once complete - takes 10+ seconds
         var task = Task<KeyPair>.Factory.StartNew(_GenerateKeyPair);
         task.ContinueWith(key => _CompleteProcessing(key.Result));
-      }
-      else
-      {
-        MessageBox.Show("Email Address and Password are required to continue.",
-          "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
       }
     }
 
