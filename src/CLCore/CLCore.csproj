@@ -45,7 +45,7 @@
     </Reference>
     <Reference Include="Sodium, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\libsodium-net.0.9.0-beta2\lib\Net40\Sodium.dll</HintPath>
+      <HintPath>..\packages\libsodium-net.0.9.0-beta3\lib\Net40\Sodium.dll</HintPath>
     </Reference>
     <Reference Include="StreamCryptor, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
