@@ -34,8 +34,8 @@ namespace Tests
       const string EMAIL = "bob@example.com";
       const string PASSWORD = "bobIsGreat&1337!&sTuFf";
       var expected = new KeyPair(
-        Sodium.Utilities.HexToBinary("db5d2066285100fb2dc96a6af544cb1ec611c2fa178d5434382163a427572a7d"),
-        Sodium.Utilities.HexToBinary("7c18a20b3fc73f110fd91d35771294c61994187d805ee2eb6dd2071ae09b4db9"));
+        Sodium.Utilities.HexToBinary("65e520f7a800865b78551c7287b9f335d0c275c0bf7dddba3be1472f3a5b3954"),
+        Sodium.Utilities.HexToBinary("d538276d5c58526d53111f78db799ad0acc2bc3010251acb3c12c719b2a2a19a"));
 
       var actual = KeyGeneration.ScryptGenerateKey(EMAIL, PASSWORD);
       CollectionAssert.AreEqual(expected.PrivateKey, actual.PrivateKey);

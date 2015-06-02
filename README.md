@@ -37,12 +37,12 @@ StreamCryptor is a small library that sits on top of `libsodium-net` (and thus `
 
 ## Identity
 
-A CurveLock Identity is derived from the user's password and email address using [scrypt](https://www.tarsnap.com/scrypt.html), the public ID is the user's public key encoded with [Base58Check](https://en.bitcoin.it/wiki/Base58Check_encoding). To generate the seed for the private key, the `scrypt` is used with the user's password, and the user's email as the salt (hashed with Blake2b); the `scrypt` parameters are:
+A CurveLock Identity is derived from the user's password and email address using [scrypt](https://download.libsodium.org/doc/password_hashing/index.html), the public ID is the user's public key encoded with [Base58Check](https://en.bitcoin.it/wiki/Base58Check_encoding). To generate the seed for the private key, the `scrypt` is used with the user's password, and the user's email as the salt (hashed with Blake2b); the `scrypt` parameters are:
 
-    OPS_LIMIT = 8388608
-    MEM_LIMIT = 100000000
+    OPS_LIMIT = 33554432
+    MEM_LIMIT = 134217728
 
-These setting use 100MB of RAM, and takes roughly 5 seconds to complete. While this is likely excessive for most users, this greatly complicates attempts to bruteforce the password.
+These setting use 128MB of RAM, and takes roughly 10 seconds to complete. While this is likely excessive for most users, this greatly complicates attempts to bruteforce the password.
 
 The first byte if the ID is a version indicator; the current version is `0x0A`.
 

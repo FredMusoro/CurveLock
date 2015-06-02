@@ -8,7 +8,7 @@ namespace CurveLock.Core
     public static KeyPair ScryptGenerateKey(string email, string password)
     {
       var salt = GenericHash.Hash(email, (byte[])null, 32);
-      var seed = PasswordHash.ScryptHashBinary(Encoding.UTF8.GetBytes(password), salt, PasswordHash.Strength.Moderate);
+      var seed = PasswordHash.ScryptHashBinary(Encoding.UTF8.GetBytes(password), salt, PasswordHash.Strength.MediumSlow);
       var key = PublicKeyBox.GenerateKeyPair(seed);
 
       return key;
